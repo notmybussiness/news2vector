@@ -26,13 +26,17 @@ class Settings(BaseSettings):
         default="http://localhost:8001", validation_alias="EMBEDDING_SERVICE_URL"
     )
 
-    # Search settings - stored as comma-separated string in .env
+    # Search settings - Hybrid: 경제 키워드 + 대량 수집
     search_keywords_str: str = Field(
-        default="증시,주식시장,코스피,코스닥",
+        default="경제,증시,주식시장,코스피,코스닥,삼성전자,SK하이닉스,금융,투자,환율,금리",
         validation_alias="SEARCH_KEYWORDS",
     )
     top_k_results: int = Field(default=5, validation_alias="TOP_K_RESULTS")
     news_per_query: int = Field(default=100, validation_alias="NEWS_PER_QUERY")
+    # 페이지네이션으로 더 많이 수집 (start=1, 101로 200개씩)
+    max_pages_per_keyword: int = Field(
+        default=2, validation_alias="MAX_PAGES_PER_KEYWORD"
+    )
 
     # Data retention
     data_retention_days: int = Field(default=30, validation_alias="DATA_RETENTION_DAYS")

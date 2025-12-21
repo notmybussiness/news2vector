@@ -112,13 +112,16 @@ class NaverNewsCollector:
         return items
 
     async def collect_by_keywords(
-        self, keywords: Optional[List[str]] = None
+        self,
+        keywords: Optional[List[str]] = None,
+        max_pages: int = 2,
     ) -> List[NewsItem]:
         """
-        Collect news for multiple keywords.
+        Collect news for multiple keywords with pagination.
 
         Args:
             keywords: List of search keywords. Uses settings if not provided.
+            max_pages: Number of pages per keyword (100 results per page)
 
         Returns:
             Combined list of NewsItem objects (deduplicated by URL)
@@ -128,11 +131,19 @@ class NaverNewsCollector:
         seen_urls = set()
 
         for keyword in keywords:
-            items = await self.search(keyword)
-            for item in items:
-                if item.url not in seen_urls:
-                    seen_urls.add(item.url)
-                    all_items.append(item)
+            # 페이지네이션: start=1, 101, 201, ... (각 100개씩)
+            for page in range(max_pages):
+                start = page * 100 + 1
+                items = await self.search(keyword, display=100, start=start)
+
+                for item in items:
+                    if item.url not in seen_urls:
+                        seen_urls.add(item.url)
+                        all_items.append(item)
+
+                # start가 1000 초과하면 API 제한
+                if start >= 900:
+                    break
 
         logger.info(f"Collected {len(all_items)} unique news items")
         return all_items
