@@ -24,12 +24,13 @@ class Settings(BaseSettings):
         default="http://localhost:8001", env="EMBEDDING_SERVICE_URL"
     )
 
-    # Search settings
+    # Search settings - broad queries for daily stock market news
     search_keywords: List[str] = Field(
-        default=["삼성전자", "SK하이닉스", "네이버", "카카오"],
+        default=["증시", "주식시장", "코스피", "코스닥"],
         env="SEARCH_KEYWORDS",
     )
     top_k_results: int = Field(default=5, env="TOP_K_RESULTS")
+    news_per_query: int = Field(default=100, env="NEWS_PER_QUERY")  # Max per query
 
     # Data retention
     data_retention_days: int = Field(default=30, env="DATA_RETENTION_DAYS")

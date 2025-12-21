@@ -62,7 +62,7 @@ class NaverNewsCollector:
         query: str,
         display: int = 100,
         start: int = 1,
-        sort: str = "date",
+        sort: str = "date",  # date: 최신순, sim: 유사도순
     ) -> List[NewsItem]:
         """
         Search news articles via Naver API.
