@@ -248,13 +248,19 @@ class MilvusClient:
 
         hits = []
         for hit in results[0]:
+            entity_dict = {}
+            for field in output_fields:
+                try:
+                    entity_dict[field] = hit.entity.get(field)
+                except Exception:
+                    entity_dict[field] = None
+
             hits.append(
                 {
                     "id": hit.id,
                     "distance": hit.distance,
-                    "score": 1
-                    / (1 + hit.distance),  # Convert L2 distance to similarity
-                    **hit.entity.to_dict(),
+                    "score": 1 / (1 + hit.distance),
+                    **entity_dict,
                 }
             )
 
