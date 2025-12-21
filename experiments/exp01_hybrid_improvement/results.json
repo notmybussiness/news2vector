@@ -1,0 +1,151 @@
+{
+  "experiment": "exp01_hybrid_comparison",
+  "timestamp": "2025-12-21T17:36:26.201433",
+  "comparison": {
+    "삼성전자": {
+      "vector_only": {
+        "relevant": 2,
+        "precision": 0.4,
+        "top_titles": [
+          "기관 '삼성전자'·외인 '삼성전자우'·개인 '삼성전자' 1위 [주간 코스",
+          "삼성전자 최근 5거래일 널뛰기 장세 10만원대 유지",
+          "[기고] 반도체 공정 화공약품 전문···업황 수혜 '기대'"
+        ]
+      },
+      "hybrid": {
+        "relevant": 2,
+        "precision": 0.4,
+        "top_titles": [
+          "기관 '삼성전자'·외인 '삼성전자우'·개인 '삼성전자' 1위 [주간 코스",
+          "삼성전자 최근 5거래일 널뛰기 장세 10만원대 유지",
+          "[기고] 반도체 공정 화공약품 전문···업황 수혜 '기대'"
+        ],
+        "match_types": [
+          "exact",
+          "exact",
+          "semantic",
+          "semantic",
+          "semantic"
+        ]
+      },
+      "improvement": 0.0
+    },
+    "SK하이닉스": {
+      "vector_only": {
+        "relevant": 2,
+        "precision": 0.4,
+        "top_titles": [
+          "[기고] 반도체 공정 화공약품 전문···업황 수혜 '기대'",
+          "12월 3주차 SK하이닉스 고점 후 하락 마감",
+          "넥스트레이드, 점유율 28% ‘뚝’…한국거래소 수수료 인하·SK하이닉스."
+        ]
+      },
+      "hybrid": {
+        "relevant": 2,
+        "precision": 0.4,
+        "top_titles": [
+          "12월 3주차 SK하이닉스 고점 후 하락 마감",
+          "넥스트레이드, 점유율 28% ‘뚝’…한국거래소 수수료 인하·SK하이닉스.",
+          "[기고] 반도체 공정 화공약품 전문···업황 수혜 '기대'"
+        ],
+        "match_types": [
+          "exact",
+          "exact",
+          "semantic",
+          "semantic",
+          "semantic"
+        ]
+      },
+      "improvement": 0.0
+    },
+    "네이버": {
+      "vector_only": {
+        "relevant": 1,
+        "precision": 0.2,
+        "top_titles": [
+          "네이버파이낸셜, 두나무와 합병 후 2030년 글로벌 증시 상장 추진",
+          "[인사] 상주시",
+          "‘일파만파’ 쿠팡 사태, 미국으로 확산…美 법원에 집단소송..“정보유.."
+        ]
+      },
+      "hybrid": {
+        "relevant": 1,
+        "precision": 0.2,
+        "top_titles": [
+          "네이버파이낸셜, 두나무와 합병 후 2030년 글로벌 증시 상장 추진",
+          "[인사] 상주시",
+          "‘일파만파’ 쿠팡 사태, 미국으로 확산…美 법원에 집단소송..“정보유.."
+        ],
+        "match_types": [
+          "exact",
+          "semantic",
+          "semantic",
+          "semantic",
+          "semantic"
+        ]
+      },
+      "improvement": 0.0
+    },
+    "카카오": {
+      "vector_only": {
+        "relevant": 2,
+        "precision": 0.4,
+        "top_titles": [
+          "최근 5거래일 카카오, 6만900원서 5만5천원대 등락 후 반등",
+          "게임+웹툰+드라마+블록체인… 미투온의 멀티 IP 전략 주목",
+          "카카오클라우드 “AI인프라도 멀티·하이브리드로”"
+        ]
+      },
+      "hybrid": {
+        "relevant": 2,
+        "precision": 0.4,
+        "top_titles": [
+          "최근 5거래일 카카오, 6만900원서 5만5천원대 등락 후 반등",
+          "카카오클라우드 “AI인프라도 멀티·하이브리드로”",
+          "게임+웹툰+드라마+블록체인… 미투온의 멀티 IP 전략 주목"
+        ],
+        "match_types": [
+          "exact",
+          "exact",
+          "semantic",
+          "semantic",
+          "semantic"
+        ]
+      },
+      "improvement": 0.0
+    },
+    "LG에너지솔루션": {
+      "vector_only": {
+        "relevant": 1,
+        "precision": 0.2,
+        "top_titles": [
+          "LG에너지솔루션 최근 5거래일간 약세 흐름 지속",
+          "(재테크)삼바, 이미 LG엔솔 제쳤다",
+          "한국농어촌공사 충북지역본부, 재생에너지 신규개발 TF 성과보고회 개최"
+        ]
+      },
+      "hybrid": {
+        "relevant": 1,
+        "precision": 0.2,
+        "top_titles": [
+          "LG에너지솔루션 최근 5거래일간 약세 흐름 지속",
+          "(재테크)삼바, 이미 LG엔솔 제쳤다",
+          "한국농어촌공사 충북지역본부, 재생에너지 신규개발 TF 성과보고회 개최"
+        ],
+        "match_types": [
+          "exact",
+          "semantic",
+          "semantic",
+          "semantic",
+          "semantic"
+        ]
+      },
+      "improvement": 0.0
+    }
+  },
+  "summary": {
+    "avg_vector_precision": 0.32,
+    "avg_hybrid_precision": 0.32,
+    "avg_improvement_pp": 0.0
+  }
+}

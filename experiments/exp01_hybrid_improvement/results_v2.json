@@ -1,0 +1,87 @@
+{
+  "experiment": "exp01_improved_v2",
+  "timestamp": "2025-12-21T17:37:30.096053",
+  "methods": {
+    "삼성전자": {
+      "vector_only": {
+        "relevant": 2,
+        "precision": 0.4
+      },
+      "query_expansion": {
+        "relevant": 2,
+        "precision": 0.4,
+        "query": "삼성전자 반도체 갤럭시"
+      },
+      "filter_first": {
+        "relevant": 3,
+        "precision": 0.6
+      }
+    },
+    "SK하이닉스": {
+      "vector_only": {
+        "relevant": 2,
+        "precision": 0.4
+      },
+      "query_expansion": {
+        "relevant": 1,
+        "precision": 0.2,
+        "query": "SK하이닉스 HBM 반도체"
+      },
+      "filter_first": {
+        "relevant": 4,
+        "precision": 0.8
+      }
+    },
+    "네이버": {
+      "vector_only": {
+        "relevant": 1,
+        "precision": 0.2
+      },
+      "query_expansion": {
+        "relevant": 1,
+        "precision": 0.2,
+        "query": "네이버 검색 라인"
+      },
+      "filter_first": {
+        "relevant": 1,
+        "precision": 0.2
+      }
+    },
+    "카카오": {
+      "vector_only": {
+        "relevant": 2,
+        "precision": 0.4
+      },
+      "query_expansion": {
+        "relevant": 1,
+        "precision": 0.2,
+        "query": "카카오 카톡 카카오페이"
+      },
+      "filter_first": {
+        "relevant": 2,
+        "precision": 0.4
+      }
+    },
+    "LG에너지솔루션": {
+      "vector_only": {
+        "relevant": 1,
+        "precision": 0.2
+      },
+      "query_expansion": {
+        "relevant": 0,
+        "precision": 0.0,
+        "query": "LG에너지솔루션 배터리 2차전지"
+      },
+      "filter_first": {
+        "relevant": 1,
+        "precision": 0.2
+      }
+    }
+  },
+  "summary": {
+    "avg_vector": 0.32,
+    "avg_query_expansion": 0.2,
+    "avg_filter_first": 0.44000000000000006,
+    "best_method": "filter_first"
+  }
+}

@@ -266,6 +266,57 @@ class MilvusClient:
 
         return hits
 
+    def hybrid_search(
+        self,
+        query: str,
+        query_embedding: List[float],
+        top_k: int = 5,
+        boost_factor: float = 1.5,
+        output_fields: List[str] = None,
+    ) -> List[Dict[str, Any]]:
+        """
+        Hybrid search: Vector similarity + keyword boosting.
+
+        Args:
+            query: Original search query (for keyword matching)
+            query_embedding: Query vector
+            top_k: Final number of results
+            boost_factor: Score multiplier for keyword matches
+            output_fields: Fields to include in results
+
+        Returns:
+            Re-ranked search results
+        """
+        # 1단계: 벡터 검색 (더 많이 가져옴)
+        candidates = self.search(
+            query_embedding, top_k=top_k * 4, output_fields=output_fields
+        )
+
+        # 2단계: 키워드 매칭 부스팅
+        query_terms = query.lower().split()
+
+        for result in candidates:
+            title = result.get("title", "").lower()
+            text = result.get("original_text", "").lower()
+
+            # 쿼리 단어가 제목에 포함되면 부스팅
+            keyword_match = any(term in title for term in query_terms)
+            exact_match = query.lower() in title
+
+            if exact_match:
+                result["score"] *= boost_factor * 1.5  # 정확히 일치하면 더 높은 부스트
+                result["match_type"] = "exact"
+            elif keyword_match:
+                result["score"] *= boost_factor
+                result["match_type"] = "keyword"
+            else:
+                result["match_type"] = "semantic"
+
+        # 3단계: 재정렬
+        candidates.sort(key=lambda x: x["score"], reverse=True)
+
+        return candidates[:top_k]
+
     def count(self) -> int:
         """Get the number of entities in the collection."""
         collection = self.get_collection()
