@@ -1,0 +1,32 @@
+# Data Pipeline Dependencies
+# Python 3.10+
+
+# Naver API & HTTP
+httpx>=0.25.0
+python-dotenv>=1.0.0
+
+# LangChain for text processing
+langchain>=0.1.0
+langchain-text-splitters>=0.0.1
+
+# Embedding model
+sentence-transformers>=2.2.0
+torch>=2.0.0
+
+# Vector DB
+pymilvus>=2.3.0
+
+# Utilities
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+tenacity>=8.2.0
+
+# Scheduling (optional, for standalone mode)
+# apscheduler>=3.10.0
+
+# Testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+
+# Logging
+loguru>=0.7.0

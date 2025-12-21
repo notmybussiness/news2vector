@@ -1,0 +1,16 @@
+# Embedding Service Dependencies
+# Python 3.10+
+
+# Web Framework
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# Embedding model
+sentence-transformers>=2.2.0
+torch>=2.0.0
+
+# Utilities
+pydantic>=2.0.0
+
+# Health checks
+prometheus-client>=0.18.0
