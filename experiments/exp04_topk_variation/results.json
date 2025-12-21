@@ -1,0 +1,31 @@
+{
+  "experiment": "exp04_topk_variation",
+  "query": "반도체 주식",
+  "k_results": {
+    "3": {
+      "total": 3,
+      "relevant_count": 3,
+      "precision": 1.0,
+      "avg_score": 0.5294087911052549
+    },
+    "5": {
+      "total": 5,
+      "relevant_count": 5,
+      "precision": 1.0,
+      "avg_score": 0.5164429523097366
+    },
+    "10": {
+      "total": 10,
+      "relevant_count": 10,
+      "precision": 1.0,
+      "avg_score": 0.4984727585828625
+    },
+    "20": {
+      "total": 20,
+      "relevant_count": 20,
+      "precision": 1.0,
+      "avg_score": 0.4810307197872392
+    }
+  },
+  "timestamp": "2025-12-21T17:31:39.910059"
+}

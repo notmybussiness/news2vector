@@ -1,0 +1,160 @@
+{
+  "experiment": "exp02_sector_search",
+  "sectors": {
+    "반도체": {
+      "keywords": [
+        "반도체",
+        "메모리",
+        "HBM",
+        "파운드리",
+        "삼성전자",
+        "SK하이닉스"
+      ],
+      "results": [
+        {
+          "title": "청주시·청주상의·에어로케이, 청소년·청년 응원 '따뜻한 비행'",
+          "score": 0.4077693386682367,
+          "is_relevant": false
+        },
+        {
+          "title": "코로나19·진단·치료제·백신개발 관련주, '맑음' 엔지켐생명과학·나노...",
+          "score": 0.40139467361843845,
+          "is_relevant": false
+        },
+        {
+          "title": "[인사] 상주시",
+          "score": 0.3992640898642724,
+          "is_relevant": false
+        },
+        {
+          "title": "[현장] “요즘 여기 진짜 핫해요”…8m 높이 대형 트리와 공연이 펼쳐지...",
+          "score": 0.39615083393434836,
+          "is_relevant": false
+        },
+        {
+          "title": "[인사] 경산시",
+          "score": 0.3949827454773092,
+          "is_relevant": false
+        }
+      ],
+      "relevant_count": 0,
+      "precision": 0.0
+    },
+    "2차전지": {
+      "keywords": [
+        "배터리",
+        "2차전지",
+        "전기차",
+        "LG에너지",
+        "삼성SDI"
+      ],
+      "results": [
+        {
+          "title": "'상장 추진' 미국 전고체 배터리 회사 판도 흔들까, 현대차도 기술 협력...",
+          "score": 0.4462174112818863,
+          "is_relevant": true
+        },
+        {
+          "title": "(재테크)삼바, 이미 LG엔솔 제쳤다",
+          "score": 0.44268009119351054,
+          "is_relevant": true
+        },
+        {
+          "title": "獨 폭스바겐, 중국車에 무릎 꿇다 [김규환의 핸디 차이나]",
+          "score": 0.4291465130868689,
+          "is_relevant": true
+        },
+        {
+          "title": "[기고] 반도체 공정 화공약품 전문···업황 수혜 '기대'",
+          "score": 0.42550018136214,
+          "is_relevant": false
+        },
+        {
+          "title": "엠아이텍, 생분해 스텐트 내놓는다",
+          "score": 0.42334951580763763,
+          "is_relevant": false
+        }
+      ],
+      "relevant_count": 3,
+      "precision": 0.6
+    },
+    "AI": {
+      "keywords": [
+        "AI",
+        "인공지능",
+        "GPT",
+        "딥러닝",
+        "엔비디아"
+      ],
+      "results": [
+        {
+          "title": "국민과 함께 AI 오류 잡아낸다",
+          "score": 0.48280002799438637,
+          "is_relevant": true
+        },
+        {
+          "title": "인터로조 \"AI로 생산성 높이고 美 렌즈 공략 가속\"",
+          "score": 0.4660818877859726,
+          "is_relevant": true
+        },
+        {
+          "title": "\"닷컴 버블 데자뷔\" VS \"승자 가리기 위한 과정\"...AI 거품론에 요동치는...",
+          "score": 0.4596005195059926,
+          "is_relevant": true
+        },
+        {
+          "title": "카카오클라우드 “AI인프라도 멀티·하이브리드로”",
+          "score": 0.45696579923179964,
+          "is_relevant": true
+        },
+        {
+          "title": "다음 주 코스피, AI 수익성 논란-정책 기대감 ‘줄다리기’",
+          "score": 0.45654027636426964,
+          "is_relevant": true
+        }
+      ],
+      "relevant_count": 5,
+      "precision": 1.0
+    },
+    "금융": {
+      "keywords": [
+        "금융",
+        "은행",
+        "증권",
+        "보험",
+        "금리"
+      ],
+      "results": [
+        {
+          "title": "'국민성장펀드 출격'…AI·이차전지 등 7대 메가프로젝트 지원 본격화",
+          "score": 0.4966846570557533,
+          "is_relevant": true
+        },
+        {
+          "title": "“땅 짚고 헤엄치기” 정부 경고에 은행들 내년 대출 조인다",
+          "score": 0.49302497800414585,
+          "is_relevant": true
+        },
+        {
+          "title": "우리은행, 서민금융 지원 우수기관으로 금감원장상 수상",
+          "score": 0.48782656219669335,
+          "is_relevant": true
+        },
+        {
+          "title": "이억원 금융위원장 \"내년에도 가계부채 관리 기조 지속..대출 쏠림은 보...",
+          "score": 0.4855004299909406,
+          "is_relevant": true
+        },
+        {
+          "title": "[통장잔GO] \"주거래 은행 말고 '여기'\"…고금리 적금 찾아 떠나는 소비자...",
+          "score": 0.4820305230542775,
+          "is_relevant": true
+        }
+      ],
+      "relevant_count": 5,
+      "precision": 1.0
+    }
+  },
+  "avg_precision": 0.65,
+  "timestamp": "2025-12-21T17:31:39.334409"
+}
