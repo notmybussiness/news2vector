@@ -2,50 +2,61 @@
 
 from pydantic_settings import BaseSettings
 from pydantic import Field
-from typing import List
+from typing import List, Optional
 
 
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
     # Naver API
-    naver_client_id: str = Field(..., env="NAVER_CLIENT_ID")
-    naver_client_secret: str = Field(..., env="NAVER_CLIENT_SECRET")
+    naver_client_id: str = Field(..., validation_alias="NAVER_CLIENT_ID")
+    naver_client_secret: str = Field(..., validation_alias="NAVER_CLIENT_SECRET")
 
-    # Gemini API
-    gemini_api_key: str = Field(..., env="GEMINI_API_KEY")
+    # Gemini API (optional for now)
+    gemini_api_key: Optional[str] = Field(
+        default=None, validation_alias="GEMINI_API_KEY"
+    )
 
     # Milvus
-    milvus_host: str = Field(default="localhost", env="MILVUS_HOST")
-    milvus_port: int = Field(default=19530, env="MILVUS_PORT")
+    milvus_host: str = Field(default="localhost", validation_alias="MILVUS_HOST")
+    milvus_port: int = Field(default=19530, validation_alias="MILVUS_PORT")
 
     # Embedding Service
     embedding_service_url: str = Field(
-        default="http://localhost:8001", env="EMBEDDING_SERVICE_URL"
+        default="http://localhost:8001", validation_alias="EMBEDDING_SERVICE_URL"
     )
 
-    # Search settings - broad queries for daily stock market news
-    search_keywords: List[str] = Field(
-        default=["증시", "주식시장", "코스피", "코스닥"],
-        env="SEARCH_KEYWORDS",
+    # Search settings - stored as comma-separated string in .env
+    search_keywords_str: str = Field(
+        default="증시,주식시장,코스피,코스닥",
+        validation_alias="SEARCH_KEYWORDS",
     )
-    top_k_results: int = Field(default=5, env="TOP_K_RESULTS")
-    news_per_query: int = Field(default=100, env="NEWS_PER_QUERY")  # Max per query
+    top_k_results: int = Field(default=5, validation_alias="TOP_K_RESULTS")
+    news_per_query: int = Field(default=100, validation_alias="NEWS_PER_QUERY")
 
     # Data retention
-    data_retention_days: int = Field(default=30, env="DATA_RETENTION_DAYS")
+    data_retention_days: int = Field(default=30, validation_alias="DATA_RETENTION_DAYS")
 
     # Logging
-    log_level: str = Field(default="INFO", env="LOG_LEVEL")
+    log_level: str = Field(default="INFO", validation_alias="LOG_LEVEL")
 
     # Collection settings
-    collection_name: str = Field(default="stock_news_v1", env="COLLECTION_NAME")
-    embedding_dimension: int = Field(default=768, env="EMBEDDING_DIMENSION")
+    collection_name: str = Field(
+        default="stock_news_v1", validation_alias="COLLECTION_NAME"
+    )
+    embedding_dimension: int = Field(
+        default=768, validation_alias="EMBEDDING_DIMENSION"
+    )
 
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
         extra = "ignore"
+
+    @property
+    def search_keywords(self) -> List[str]:
+        """Parse comma-separated keywords string into list."""
+        return [k.strip() for k in self.search_keywords_str.split(",") if k.strip()]
 
     @property
     def milvus_uri(self) -> str:
