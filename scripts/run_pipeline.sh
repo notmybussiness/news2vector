@@ -16,11 +16,11 @@ echo "Pipeline started at $(date)" >> "$LOG_FILE"
 echo "========================================" >> "$LOG_FILE"
 
 # 가상환경 활성화 및 실행
-cd "$PROJECT_DIR"
-source data-pipeline/venv/bin/activate
+cd "$PROJECT_DIR/data-pipeline"
+source venv/bin/activate
 
 # 파이프라인 실행
-python -m data-pipeline.src.main >> "$LOG_FILE" 2>&1
+python -m src.main >> "$LOG_FILE" 2>&1
 
 echo "Pipeline completed at $(date)" >> "$LOG_FILE"
 echo "" >> "$LOG_FILE"
