@@ -132,6 +132,51 @@ crontab -l
 # 0 8 * * * /Users/gyu/Desktop/프로젝트/news2vector/scripts/run_pipeline.sh
 ```
 
-## 📄 License
+## � Docker 배포
+
+Docker Compose로 **RAG API + Milvus + Attu**를 한 번에 실행할 수 있습니다.
+
+### 포함된 서비스
+
+| 서비스    | 포트        | 설명                     |
+| --------- | ----------- | ------------------------ |
+| `rag-api` | 8000        | Python RAG API 서버      |
+| `milvus`  | 19530, 9091 | Milvus Vector DB         |
+| `attu`    | 3000        | Milvus Web UI            |
+| `etcd`    | -           | Milvus 메타데이터 저장소 |
+| `minio`   | 9000-9001   | Milvus 오브젝트 스토리지 |
+
+### 실행 방법
+
+```bash
+# 1. 환경변수 설정
+cp .env.example .env
+# GEMINI_API_KEY, NAVER_CLIENT_ID, NAVER_CLIENT_SECRET 입력
+
+# 2. 전체 스택 실행 (빌드 + 실행)
+docker compose up -d --build
+
+# 3. 상태 확인
+docker compose ps
+
+# 4. 로그 확인
+docker compose logs -f rag-api
+```
+
+### 데이터 수집 (최초 1회)
+
+```bash
+# 컨테이너 내에서 뉴스 수집 파이프라인 실행
+docker compose exec rag-api python -m src.main
+```
+
+### 종료
+
+```bash
+docker compose down          # 컨테이너 정지 (데이터 유지)
+docker compose down -v       # 컨테이너 + 볼륨 삭제 (데이터 삭제)
+```
+
+## �📄 License
 
 MIT
