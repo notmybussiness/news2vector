@@ -74,7 +74,8 @@ class NewsRAGPipeline:
             raw_results = self._apply_date_filter(raw_results, request.filters)
 
         # Step 4: Filter by minimum relevance
-        min_relevance = 0.7
+        # L2 distance: score = 1/(1+distance), 약 0.005~0.02 범위
+        min_relevance = 0.005
         if request.filters and request.filters.minRelevance:
             min_relevance = request.filters.minRelevance
 
