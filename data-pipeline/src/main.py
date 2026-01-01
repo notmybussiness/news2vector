@@ -20,7 +20,7 @@ import sys
 
 from .config import settings
 from .collectors import NaverNewsCollector, NewsItem
-from .processors import TextSplitter, Deduplicator
+from .processors import TextSplitter, Deduplicator, NewsPreprocessor
 from .embeddings import KoSRoBERTaEmbedding
 from .storage import MilvusClient
 
@@ -45,6 +45,7 @@ class DataPipeline:
         self.collector = NaverNewsCollector()
         self.splitter = TextSplitter(chunk_size=500, chunk_overlap=50)
         self.deduplicator = Deduplicator()
+        self.preprocessor = NewsPreprocessor()
         self.embedder = KoSRoBERTaEmbedding()
         self.storage = MilvusClient()
 
@@ -100,6 +101,15 @@ class DataPipeline:
                 )
                 all_chunks.extend(chunks)
             stats["chunks_created"] = len(all_chunks)
+
+            # Step 3.5: Preprocess text (remove noise, normalize)
+            logger.info("Step 3.5: Preprocessing text chunks")
+            for chunk in all_chunks:
+                chunk.content = self.preprocessor.preprocess(chunk.content)
+
+            # Filter out empty chunks after preprocessing
+            all_chunks = [c for c in all_chunks if c.content.strip()]
+            logger.info(f"After preprocessing: {len(all_chunks)} chunks remain")
 
             # Step 4: Generate embeddings
             logger.info("Step 4: Generating embeddings")

@@ -17,6 +17,7 @@ from ..api.models import (
 from ..storage import MilvusClient
 from ..embeddings import KoSRoBERTaEmbedding
 from .analyzer import NewsAnalyzer
+from .reranker import CrossEncoderReranker
 
 
 class NewsRAGPipeline:
@@ -30,13 +31,21 @@ class NewsRAGPipeline:
     4. Stock recommendation generation
     """
 
-    def __init__(self):
-        """Initialize pipeline components."""
+    def __init__(self, use_reranker: bool = True):
+        """
+        Initialize pipeline components.
+
+        Args:
+            use_reranker: Whether to use cross-encoder reranking (default: True)
+        """
         self.embedder = KoSRoBERTaEmbedding()
         self.storage = MilvusClient()
         self.analyzer = NewsAnalyzer()
+        self.reranker = CrossEncoderReranker() if use_reranker else None
 
-        logger.info("NewsRAGPipeline initialized")
+        logger.info(
+            f"NewsRAGPipeline initialized (reranker: {'enabled' if self.reranker else 'disabled'})"
+        )
 
     async def search(self, request: NewsSearchRequest) -> NewsSearchResponse:
         """
@@ -57,16 +66,28 @@ class NewsRAGPipeline:
         search_query = self._build_search_query(request)
 
         # Use hybrid search if portfolio context is provided
+        # Fetch more candidates for reranking
+        fetch_k = request.topK * 4 if self.reranker else request.topK
+
         if request.portfolioContext and request.portfolioContext.holdings:
             raw_results = self.storage.hybrid_search(
                 query=search_query,
                 query_embedding=query_embedding,
-                top_k=request.topK,
+                top_k=fetch_k,
             )
         else:
             raw_results = self.storage.search(
                 query_embedding=query_embedding,
-                top_k=request.topK,
+                top_k=fetch_k,
+            )
+
+        # Step 2.5: Rerank with cross-encoder for better precision
+        if self.reranker and self.reranker.is_enabled():
+            logger.debug(f"Reranking {len(raw_results)} candidates")
+            raw_results = self.reranker.rerank(
+                query=request.query,
+                results=raw_results,
+                top_k=request.topK * 2,  # Keep extra for date filtering
             )
 
         # Step 3: Filter by date if specified

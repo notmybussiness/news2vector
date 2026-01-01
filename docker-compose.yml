@@ -13,9 +13,9 @@ services:
     environment:
       - MILVUS_HOST=milvus
       - MILVUS_PORT=19530
-      - GEMINI_API_KEY=${GEMINI_API_KEY}
-      - NAVER_CLIENT_ID=${NAVER_CLIENT_ID}
-      - NAVER_CLIENT_SECRET=${NAVER_CLIENT_SECRET}
+      - GEMINI_API_KEY=AIzaSyDWxzz6V5AU27g90HFd_kXcWvrCJQoPH8Q
+      - NAVER_CLIENT_ID=EoBWdAJyyov2ZwfSU6a0
+      - NAVER_CLIENT_SECRET=7d9BXMv7_q
     depends_on:
       milvus:
         condition: service_healthy

@@ -2,5 +2,6 @@
 
 from .pipeline import NewsRAGPipeline
 from .analyzer import NewsAnalyzer
+from .reranker import CrossEncoderReranker
 
-__all__ = ["NewsRAGPipeline", "NewsAnalyzer"]
+__all__ = ["NewsRAGPipeline", "NewsAnalyzer", "CrossEncoderReranker"]
